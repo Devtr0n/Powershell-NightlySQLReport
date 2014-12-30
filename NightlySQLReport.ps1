@@ -19,8 +19,8 @@ $username='xxx'
 $password='xxx'
 $serverinstance='xxx\xxx2008'
 $database=’xxx’
-$logfile='C:\TEA\Tools\NightlySQLScript-log.log'
-$htmlFile='C:\TEA\Tools\NightlySQLScript-log.html'
+$logfile='C:\Tools\NightlySQLScript-log.log'
+$htmlFile='C:\Tools\NightlySQLScript-log.html'
  
 #2.) create fresh log file
 if (Test-Path $logfile)
