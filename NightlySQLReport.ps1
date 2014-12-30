@@ -98,7 +98,7 @@ $htmlReport | ConvertTo-Html -Property Output, Status -head $header -body $body 
  
 Copy-Item $htmlFile 'C:\TEA\Tools\logs' #copy to IIS directory
  
-############################# 3 - EMAIL SECTION #######################################################
+############################# 4 - EMAIL SECTION #######################################################
 #1.) Declare & initialize email variables
 $msgto=’recipient@test.com'
 $msgfrom='admin@test.com’
