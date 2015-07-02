@@ -32,18 +32,18 @@ if (Test-Path $logfile)
 "$(Get-Date -format F) - Start logging..." | Out-File -filePath $logfile -Append
  
 #3.) try/execute SQL statements
-"$(Get-Date -format F) - Executing SQL statement #1 - pr_egr_RPT_UpdateEgrantsHeaderData..." | Out-File -filePath $logfile -Append
+"$(Get-Date -format F) - Executing SQL statement #1 - sp_UpdateBusinessObject_HeaderInformaton..." | Out-File -filePath $logfile -Append
 try {
-    Invoke-Sqlcmd "EXEC pr_egr_RPT_UpdateEgrantsHeaderData;" -ServerInstance $serverinstance -Username $username -Password $password -Database $database -Verbose 4>&1 | Out-File -filePath $logfile -Append
+    Invoke-Sqlcmd "EXEC sp_UpdateBusinessObject_HeaderInformaton;" -ServerInstance $serverinstance -Username $username -Password $password -Database $database -Verbose 4>&1 | Out-File -filePath $logfile -Append
 } catch {
-    "SQL error occured - Executing SQL statement #1 - pr_egr_RPT_UpdateEgrantsHeaderData`n" + $_ | Out-File -filePath $logfile -Append
+    "SQL error occured - Executing SQL statement #1 - sp_UpdateBusinessObject_HeaderInformaton`n" + $_ | Out-File -filePath $logfile -Append
 }
  
-"$(Get-Date -format F) - Executing SQL statement #2 - pr_egr_RPT_UpdateEgrantsNetData_Grants_ConsRpt..." | Out-File -filePath $logfile -Append
+"$(Get-Date -format F) - Executing SQL statement #2 - sp_UpdateBusinessObject_DataProcessMain_Rpt..." | Out-File -filePath $logfile -Append
 try {
-                Invoke-Sqlcmd "EXEC pr_egr_RPT_UpdateEgrantsNetData_Grants_ConsRpt;" -ServerInstance $serverinstance -Username $username -Password $password -Database $database -Verbose 4>&1 | Out-File -filePath $logfile -Append
+                Invoke-Sqlcmd "EXEC sp_UpdateBusinessObject_DataProcessMain_Rpt;" -ServerInstance $serverinstance -Username $username -Password $password -Database $database -Verbose 4>&1 | Out-File -filePath $logfile -Append
 } catch {
-    "SQL error occured - Executing SQL statement #2 - pr_egr_RPT_UpdateEgrantsNetData_Grants_ConsRpt`n" + $_ | Out-File -filePath $logfile -Append
+    "SQL error occured - Executing SQL statement #2 - sp_UpdateBusinessObject_DataProcessMain_Rpt`n" + $_ | Out-File -filePath $logfile -Append
 }
  
 #4.) Close the log file
@@ -106,11 +106,11 @@ $smtpserver='smpt.server.com'
  
 if ($htmlReport | Select-String 'Error', 'Insert')
 {
-                $msgbody='Hi eGrants Support, There were some errors during the nightly process. Please see the attached log file.' #log errors present
+                $msgbody='Hi Support team, There were some errors during the nightly process. Please see the attached log file.' #log errors present
 }
 else
 {
-                $msgbody='Hi eGrants Support, The nightly SQL process ran successfully without any errors.'                                                                                                     #log is error free
+                $msgbody='Hi Support team, The nightly SQL process ran successfully without any errors.'                                                                                                     #log is error free
 }
  
 #2.) Send email to support team with the logfile as an attachment
