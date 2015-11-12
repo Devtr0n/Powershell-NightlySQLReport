@@ -96,7 +96,7 @@ $htmlReport | ConvertTo-Html -Property Output, Status -head $header -body $body 
     $PSItem -replace "<td>FAIL</td>", "<td style='background-color:#FF8080'>FAIL</td>" -replace "<td>PASS</td>", "<td style='background-color:green'>PASS</td>"
 } | Out-File $htmlFile
  
-Copy-Item $htmlFile 'C:\TEA\Tools\logs' #copy to IIS directory
+Copy-Item $htmlFile 'C:\_Code\Tools\logs' #copy to IIS directory
  
 ############################# 4 - EMAIL SECTION #######################################################
 #1.) Declare & initialize email variables
